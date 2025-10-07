@@ -46,6 +46,8 @@ usertrap(void)
   w_stvec((uint64)kernelvec);
 
   struct proc *p = myproc();
+
+  p->cputime++; //Increment cputime on interrupt
   
   // save user program counter.
   p->trapframe->epc = r_sepc();

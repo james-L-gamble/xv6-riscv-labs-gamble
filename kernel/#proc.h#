@@ -108,5 +108,5 @@ struct proc {
 
   //HW2: Tracks cputime
 
-  int cputime;
+  int cputime = 0;
 };
