@@ -120,7 +120,11 @@ allocproc(void)
 found:
   p->pid = allocpid();
   p->state = USED;
-
+  
+  //Set readytime to current cpu time if and only if the current time is 0.
+   
+  p->readytime = ticks; //Set to current CPU time
+  
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
     freeproc(p);
@@ -674,6 +678,7 @@ procinfo(uint64 addr)
     procinfo.pid = p->pid;
     procinfo.state = p->state;
     procinfo.size = p->sz;
+    procinfo.priority = p->priority;
     if (p->parent)
       procinfo.ppid = (p->parent)->pid;
     else
@@ -684,6 +689,7 @@ procinfo(uint64 addr)
       return -1;
     addr += sizeof(procinfo);
   }
-  return nprocs;
+  //return nprocs;
+  return procinfo.priority;
 }
 

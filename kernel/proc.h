@@ -86,6 +86,14 @@ enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 struct proc {
   struct spinlock lock;
 
+
+  // Stores process priority for priority scheduling mode
+  
+  int priority;
+
+  // Stores time that the process is first ready
+  int readytime = 0; //Nothing will be ready at 0 cycles of uptime
+
   // p->lock must be held when using these:
   enum procstate state;        // Process state
   void *chan;                  // If non-zero, sleeping on chan

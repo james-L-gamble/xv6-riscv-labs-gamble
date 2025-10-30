@@ -19,12 +19,15 @@ int main(int argc, char **argv)
     if (nprocs < 0)
         exit(-1);
 
-    printf("pid\tstate\t\tsize\tppid\tname\n");
+    int age;
+
+    printf("pid\tstate\t\tsize\tppid\tname\tpriority\tage\n");
     for (i = 0; i < nprocs; i++)
     {
+        age = uptime() - uproc[i].readytime;
         state = states[uproc[i].state];
-        printf("%d\t%s\t%l\t%d\t%s\n", uproc[i].pid, state,
-               uproc[i].size, uproc[i].ppid, uproc[i].name);
+        printf("%d\t%s\t%l\t%d\t%s\t%d\t%d\n", uproc[i].pid, state,
+               uproc[i].size, uproc[i].ppid, uproc[i].name, uproc[i].priority, age);
     }
 
     exit(0);

@@ -108,3 +108,16 @@ sys_getprocs(void)
   return(procinfo(addr));
 }
 
+
+uint64
+sys_getpriority(void){
+
+  uint64 addr;
+
+  if (argaddr(0, &addr) < 0)
+    return -1;
+  procinfo(addr);
+
+  return addr->priority;
+}
+
