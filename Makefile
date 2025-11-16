@@ -137,6 +137,8 @@ UPROGS=\
 	$U/_pstest\
 	$U/_sleep\
 	$U/_matmul\
+	$U/_free\
+	$U/memory-user\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
