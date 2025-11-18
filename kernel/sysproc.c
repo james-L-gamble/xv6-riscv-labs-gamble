@@ -129,16 +129,18 @@ sys_freepmem(void){
 
   acquire(&kmem.lock); //Aquire the lock for kmem
 
-  struct run *page = kmem.freelist; //First free page
+  struct run *current_page = kmem.freelist; //First free page
 
   
   //Iterate over all free pages and count them.
-  while(run){
+  while(struct run.current_page != NULL){
     free_page_count++;
     
-    run = run->next;
+    struct run *current_page = (struct run *current_page.next);
+    
     }
 
   return free_page_count * PAGE_SIZE; //Amount of free memory is the number of free pages times the size of each page.
-  
+
+  release(&kmem.lock); //Relase lock on kmem
 }
