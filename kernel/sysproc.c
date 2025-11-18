@@ -140,7 +140,9 @@ sys_freepmem(void){
     
     }
 
+  release(&kmem.lock); //Relase lock on kmem
+  
   return free_page_count * PAGE_SIZE; //Amount of free memory is the number of free pages times the size of each page.
 
-  release(&kmem.lock); //Relase lock on kmem
+  
 }
