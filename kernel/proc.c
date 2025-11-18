@@ -123,7 +123,7 @@ found:
   
   //Set readytime to current cpu time if and only if the current time is 0.
    
-  p->readytime = ticks; //Set to current CPU time
+//  p->readytime = ticks; //Set to current CPU time
   
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){

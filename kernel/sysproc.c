@@ -6,7 +6,7 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
-
+#include "kalloc.c"
 uint64
 sys_exit(void)
 {
@@ -109,7 +109,7 @@ sys_getprocs(void)
 }
 
 
-uint64
+/*uint64
 sys_getpriority(void){
 
   uint64 addr;
@@ -119,5 +119,26 @@ sys_getpriority(void){
   procinfo(addr);
 
   return addr->priority;
-}
+  }*/
 
+uint64
+sys_freepmem(void){
+  const int PAGE_SIZE = 4096; //Each page is 4KB, or 4096 bytes, large.
+
+  int free_page_count = 0; //Stores number of free pages
+
+  acquire(&kmem.lock); //Aquire the lock for kmem
+
+  struct run *page = kmem.freelist; //First free page
+
+  
+  //Iterate over all free pages and count them.
+  while(run){
+    free_page_count++;
+    
+    run = run->next;
+    }
+
+  return free_page_count * PAGE_SIZE; //Amount of free memory is the number of free pages times the size of each page.
+  
+}

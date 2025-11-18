@@ -25,6 +25,7 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int getprocs(struct pstat*); //hw3 getprocs
+uint64 freepmem(void); //HW4 freepmem
 
 // ulib.c
 int stat(const char*, struct stat*);

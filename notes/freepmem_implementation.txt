@@ -1,0 +1,7 @@
+Idea:
+
+kmem() system call returns the number of free pages.
+
+Each page has 4096 bytes.
+
+The number of free bytes is kmem * 4096

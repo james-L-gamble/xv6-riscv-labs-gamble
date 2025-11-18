@@ -80,7 +80,7 @@ struct trapframe {
   /* 280 */ uint64 t6;
 };
 
-enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
+//enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
 // Per-process state
 struct proc {
@@ -92,7 +92,7 @@ struct proc {
   int priority;
 
   // Stores time that the process is first ready
-  int readytime = 0; //Nothing will be ready at 0 cycles of uptime
+//  int readytime = 0; //Nothing will be ready at 0 cycles of uptime
 
   // p->lock must be held when using these:
   enum procstate state;        // Process state
